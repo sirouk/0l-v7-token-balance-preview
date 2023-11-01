@@ -62,11 +62,10 @@ const HomePage = () => {
       </div>
       {data && (
         <div className="data-container">
-          <h2>Account Details</h2>
-          <p>Sequence Number: {extractData("0x1::account::Account").sequence_number}</p>
+          <h2>Account Details:</h2>
           <p>Authentication Key: {extractData("0x1::account::Account").authentication_key}</p>
           
-          <h2>Balance</h2>
+          <h2>Balance Details:</h2>
           <p>v5 Balance: {formatNumber((v5Balance * 0.000001).toFixed(6))}</p>
           <p>v7 Balance: {formatNumber((extractData("0x1::coin::CoinStore<0x1::gas_coin::LibraCoin>").coin.value * 0.000001).toFixed(6))}</p>
         </div>
