@@ -41,7 +41,7 @@ const HomePage = () => {
   return (
     <div className="container">
       <img src="/0L-logo.png" alt="0L Network" className="logo" />
-      <h1>v5 -&gt; v7 Token Rebase Preview</h1>
+      <h1>v7 Token Rebase Preview</h1>
       <p>Enter your 0L v5 Address:</p>
       <div className="input-container">
         <input
