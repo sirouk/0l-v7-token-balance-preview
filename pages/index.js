@@ -20,10 +20,11 @@ const HomePage = () => {
   };
 
   return (
-    <div>
+    <div className="container">
+      <img src="/0L-logo.png" alt="0L Network" className="logo" />
       <h1>0L v7 Token Balance Preview</h1>
-      <div>
-        <img src="/0L-logo.png" alt="0L Network" width="150" />      
+      <p>Enter your 0L v5 Address:</p>
+      <div className="input-container">
         <input
           type="text"
           value={address}
@@ -33,8 +34,7 @@ const HomePage = () => {
         <button onClick={fetchBalance}>Submit</button>
       </div>
       {data && (
-        <div>
-          
+        <div className="data-container">
           <h2>Account Details</h2>
           <p>Sequence Number: {extractData("0x1::account::Account").sequence_number}</p>
           <p>Authentication Key: {extractData("0x1::account::Account").authentication_key}</p>
