@@ -1,22 +1,38 @@
-
 import { useState } from 'react';
 
 const HomePage = () => {
   const [address, setAddress] = useState('');
   const [data, setData] = useState(null);
+  const [v5Balance, setV5Balance] = useState(null);
 
-  const fetchBalance = async () => {
+  const fetchBalances = async () => {
     try {
-      const response = await fetch(`https://rpc.0l.fyi/v1/accounts/${address}/resources`);
-      const jsonData = await response.json();
-      setData(jsonData);
+      const responseV7 = await fetch(`https://rpc.0l.fyi/v1/accounts/${address}/resources`);
+      const dataV7 = await responseV7.json();
+      setData(dataV7);
+
+      const responseV5 = await fetch('http://63.229.234.76:8080', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          jsonrpc: "2.0",
+          method: "get_account",
+          params: [address],
+          id: 1
+        })
+      });
+      const dataV5 = await responseV5.json();
+      setV5Balance(dataV5.result?.balance || 0);
+
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
 
   const extractData = (type) => {
-    return data.find(item => item.type === type)?.data || {};
+    return data?.find(item => item.type === type)?.data || {};
   };
 
   return (
@@ -31,7 +47,7 @@ const HomePage = () => {
           onChange={(e) => setAddress(e.target.value)}
           placeholder="Enter v5 Address"
         />
-        <button onClick={fetchBalance}>Submit</button>
+        <button onClick={fetchBalances}>Submit</button>
       </div>
       {data && (
         <div className="data-container">
@@ -40,7 +56,8 @@ const HomePage = () => {
           <p>Authentication Key: {extractData("0x1::account::Account").authentication_key}</p>
           
           <h2>Balance</h2>
-          <p>Current Balance: {extractData("0x1::coin::CoinStore<0x1::gas_coin::LibraCoin>").coin.value}</p>
+          <p>v5 Balance: {v5Balance}</p>
+          <p>v7 Balance: {extractData("0x1::coin::CoinStore<0x1::gas_coin::LibraCoin>").coin.value}</p>
 
           <h2>Slow Wallet</h2>
           <p>Transferred: {extractData("0x1::slow_wallet::SlowWallet").transferred}</p>
