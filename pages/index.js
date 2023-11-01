@@ -19,8 +19,7 @@ const HomePage = () => {
     <div>
       <h1>0L v7 Token Balance Preview</h1>
       <div>
-        <img src="/0L-logo.png" alt="0L Network" width="150" />
-      
+        <img src="/0L-logo.png" alt="0L Network" width="150" />      
         <input
           type="text"
           value={address}
