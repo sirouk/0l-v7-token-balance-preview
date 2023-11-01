@@ -3,16 +3,15 @@ import { useState } from 'react';
 
 const HomePage = () => {
   const [address, setAddress] = useState('');
-  const [balance, setBalance] = useState(null);
+  const [data, setData] = useState(null);
 
   const fetchBalance = async () => {
     try {
       const response = await fetch(`https://rpc.0l.fyi/v1/accounts/${address}/resources`);
-      const data = await response.json();
-      console.log(data);
-      setBalance(data.balance); // Assuming 'balance' is a key in the response
+      const jsonData = await response.json();
+      setData(jsonData);
     } catch (error) {
-      console.error('Error fetching balance:', error);
+      console.error('Error fetching data:', error);
     }
   };
 
