@@ -12,7 +12,7 @@ const HomePage = () => {
       console.log(dataV7);
       setData(dataV7);
   
-      const responseV5 = await fetch('http://63.229.234.76:8080', {
+      const responseV5 = await fetch('https://mainnet-v5-rpc.openlibra.space:8080', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
