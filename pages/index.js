@@ -69,10 +69,6 @@ const HomePage = () => {
           <h2>Balance</h2>
           <p>v5 Balance: {formatNumber((v5Balance * 0.000001).toFixed(6))}</p>
           <p>v7 Balance: {formatNumber((extractData("0x1::coin::CoinStore<0x1::gas_coin::LibraCoin>").coin.value * 0.000001).toFixed(6))}</p>
-
-          <h2>Slow Wallet</h2>
-          <p>Transferred: {formatNumber((extractData("0x1::slow_wallet::SlowWallet").transferred * 0.000001).toFixed(6))}</p>
-          <p>Unlocked: {formatNumber((extractData("0x1::slow_wallet::SlowWallet").unlocked * 0.000001).toFixed(6))}</p>
         </div>
       )}
     </div>
