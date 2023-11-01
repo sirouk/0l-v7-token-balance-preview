@@ -44,6 +44,7 @@ const HomePage = () => {
       <div className="input-container">
         <input
           type="text"
+          className="address-input"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
           placeholder="Enter v5 Address"
