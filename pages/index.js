@@ -9,6 +9,7 @@ const HomePage = () => {
     try {
       const responseV7 = await fetch(`https://rpc.0l.fyi/v1/accounts/${address}/resources`);
       const dataV7 = await responseV7.json();
+      console.log(dataV7);
       setData(dataV7);
   
       const responseV5 = await fetch('http://63.229.234.76:8080', {
@@ -24,6 +25,7 @@ const HomePage = () => {
         })
       });
       const dataV5 = await responseV5.json();
+      console.log(dataV5);
       const v5Amount = dataV5.result.balances[0]?.amount || 0;  // Extracting the amount from the v5 response
       setV5Balance(v5Amount);
   
