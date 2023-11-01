@@ -8,9 +8,9 @@ const HomePage = () => {
   const fetchBalances = async () => {
     try {
       const formattedAddress = address.toLowerCase();             // Convert the address to lowercase
-      const v5Address = formattedAddress.replace(/^0x/, '');      // Remove the leading 0x for v5 request
+      const cleanAddress = formattedAddress.replace(/^0x/, '');      // Remove the leading 0x for v5 request
 
-      const responseV7 = await fetch(`https://rpc.0l.fyi/v1/accounts/${formattedAddress}/resources`);
+      const responseV7 = await fetch(`https://rpc.0l.fyi/v1/accounts/0x${cleanAddress}/resources`);
       const dataV7 = await responseV7.json();
       console.log(dataV7);
       setData(dataV7);
@@ -23,7 +23,7 @@ const HomePage = () => {
         body: JSON.stringify({
           jsonrpc: "2.0",
           method: "get_account",
-          params: [v5Address],
+          params: [cleanAddress],
           id: 1
         })
       });
