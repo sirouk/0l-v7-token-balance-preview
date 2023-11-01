@@ -41,6 +41,10 @@ const HomePage = () => {
     return data?.find(item => item.type === type)?.data || {};
   };
 
+  const formatNumber = (number) => {
+    return new Intl.NumberFormat().format(number);
+  };
+
   return (
     <div className="container">
       <img src="/0L-logo.png" alt="0L Network" className="logo" />
@@ -63,12 +67,12 @@ const HomePage = () => {
           <p>Authentication Key: {extractData("0x1::account::Account").authentication_key}</p>
           
           <h2>Balance</h2>
-          <p>v5 Balance: {v5Balance}</p>
-          <p>v7 Balance: {extractData("0x1::coin::CoinStore<0x1::gas_coin::LibraCoin>").coin.value}</p>
+          <p>v5 Balance: {formatNumber((v5Balance * 0.000001).toFixed(6))}</p>
+          <p>v7 Balance: {formatNumber((extractData("0x1::coin::CoinStore<0x1::gas_coin::LibraCoin>").coin.value * 0.000001).toFixed(6))}</p>
 
           <h2>Slow Wallet</h2>
-          <p>Transferred: {extractData("0x1::slow_wallet::SlowWallet").transferred}</p>
-          <p>Unlocked: {extractData("0x1::slow_wallet::SlowWallet").unlocked}</p>
+          <p>Transferred: {formatNumber((extractData("0x1::slow_wallet::SlowWallet").transferred * 0.000001).toFixed(6))}</p>
+          <p>Unlocked: {formatNumber((extractData("0x1::slow_wallet::SlowWallet").unlocked * 0.000001).toFixed(6))}</p>
         </div>
       )}
     </div>
