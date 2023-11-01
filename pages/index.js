@@ -9,6 +9,7 @@ const HomePage = () => {
     try {
       const response = await fetch(`https://rpc.0l.fyi/v1/accounts/${address}/resources`);
       const data = await response.json();
+      console.log(data);
       setBalance(data.balance); // Assuming 'balance' is a key in the response
     } catch (error) {
       console.error('Error fetching balance:', error);
