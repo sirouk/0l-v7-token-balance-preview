@@ -16,10 +16,22 @@ const HomePage = () => {
       console.log(chainInfo);
       setChain(chainInfo);
 
-      const supplyInfoReq = await fetch(`https://rpc.0l.fyi/v1/tables/0xfc074a2b7638a50ba678ce381a2350a28264f4da004603adb8dc36d125750108/item`);
-      const supplyInfo = await supplyInfoReq;
+      const supplyInfoPayload = {
+        key_type: "address",
+        value_type: "u128",
+        key: "0xa7e1af6d61e958dbefe8f35550aab562f8923634cd7f438bc5190e99ca5fb07c"
+      };
+      const supplyInfoReq = await fetch('https://rpc.0l.fyi/v1/tables/0xfc074a2b7638a50ba678ce381a2350a28264f4da004603adb8dc36d125750108/item', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(supplyInfoPayload)
+      });
+      const supplyInfo = await supplyInfoReq.json(); // Assuming the response is in JSON format
       console.log(supplyInfo);
       setSupplyInfo(supplyInfo);
+
 
       const formattedAddress = address.toLowerCase();             // Convert the address to lowercase
       const cleanAddress = formattedAddress.replace(/^0x/, '');      // Remove the leading 0x for v5 request
