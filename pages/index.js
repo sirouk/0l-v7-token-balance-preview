@@ -38,7 +38,7 @@ const HomePage = () => {
       });
       const v5Data = await v5DataReq.json();
       console.log(v5Data);
-      const v5Chain = v5Data;  // Extracting the amount from the v5 response
+      const v5Chain = v5Data.diem_chain_id || '';  // Extracting the amount from the v5 response
       setv5ChainID(v5Chain);
       const v5Amount = v5Data.result.balances[0]?.amount || 0;  // Extracting the amount from the v5 response
       setV5Balance(v5Amount);
@@ -93,7 +93,7 @@ const HomePage = () => {
           <p>v7 Total Supply: {formatNumber((v7DataExtraction("0x1::token::Token").total_value * 0.000001).toFixed(6))}</p>
 
           <h2>Chain Info:</h2>
-          <p>v5 Chain ID: {v5Chain.diem_chain_id}</p>
+          <p>v5 Chain ID: {v5Chain}</p>
           <p>v7 Chain ID: {chainInfo.chain_id}</p>
         </div>
       )}
