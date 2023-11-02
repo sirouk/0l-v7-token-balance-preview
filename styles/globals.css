@@ -18,6 +18,7 @@ body {
 }
 
 .logo {
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 
@@ -43,5 +44,5 @@ button:hover {
 }
 
 .address-input {
-  width: 250px;
+  width: 275px;
 }
