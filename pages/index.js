@@ -83,13 +83,13 @@ const HomePage = () => {
           <p>v7 Balance: {formatNumber((v7DataExtraction("0x1::coin::CoinStore<0x1::gas_coin::LibraCoin>").coin.value * 0.000001).toFixed(6))}</p>
 
           <h2>Slow Wallet:</h2>
-          <p>v5 Unlocked: {formatNumber((v5Data.result.total_supply * 0.000001).toFixed(6))}</p>
-          <p>v5 Transferred: {formatNumber((v5Data.result.total_supply * 0.000001).toFixed(6))}</p>
+          <p>v5 Unlocked: {formatNumber((0).toFixed(6))}</p>
+          <p>v5 Transferred: {formatNumber((0).toFixed(6))}</p>
           <p>v7 Unlocked: {formatNumber((v7DataExtraction("0x1::slow_wallet::SlowWallet").unlocked * 0.000001).toFixed(6))}</p>
           <p>v7 Transferred: {formatNumber((v7DataExtraction("0x1::slow_wallet::SlowWallet").transferred * 0.000001).toFixed(6))}</p>
 
           <h2>Supply Details:</h2>
-          <p>v5 Total Supply: {formatNumber((v5Data.result.total_supply * 0.000001).toFixed(6))}</p>
+          <p>v5 Total Supply: {formatNumber((0).toFixed(6))}</p>
           <p>v7 Total Supply: {formatNumber((v7DataExtraction("0x1::token::Token").total_value * 0.000001).toFixed(6))}</p>
 
           <h2>Chain Info:</h2>
