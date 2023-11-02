@@ -2,11 +2,18 @@ import { useState } from 'react';
 
 const HomePage = () => {
   const [address, setAddress] = useState('');
+  const [chainInfo, setChain] = useState(null);
   const [data, setData] = useState(null);
   const [v5Balance, setV5Balance] = useState(null);
 
   const fetchBalances = async () => {
     try {
+      
+      const chainInfoReq = await fetch(`https://rpc.0l.fyi/v1/`);
+      const chainInfo = await chainInfoReq.json();
+      console.log(chainInfo);
+      setChain(chainInfo);
+
       const formattedAddress = address.toLowerCase();             // Convert the address to lowercase
       const cleanAddress = formattedAddress.replace(/^0x/, '');      // Remove the leading 0x for v5 request
 
@@ -14,6 +21,7 @@ const HomePage = () => {
       const dataV7 = await responseV7.json();
       console.log(dataV7);
       setData(dataV7);
+
   
       const responseV5 = await fetch('https://mainnet-v5-rpc.openlibra.space:8080', {
         method: 'POST',
@@ -48,7 +56,7 @@ const HomePage = () => {
   return (
     <div className="container">
       <img src="/0L-logo.png" alt="0L Network" className="logo" />
-      <h1>v7 Token Rebase Preview</h1>
+      <h1>v7 Token Split Preview</h1>
       <p>Enter your 0L v5 Address:</p>
       <div className="input-container">
         <input
@@ -62,6 +70,9 @@ const HomePage = () => {
       </div>
       {data && (
         <div className="data-container">
+          <h2>Chain Info:</h2>
+          <p>Chain ID: {extractData("chain_id")}</p>
+
           <h2>Account Details:</h2>
           <p>Authentication Key: {extractData("0x1::account::Account").authentication_key}</p>
           
