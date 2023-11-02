@@ -71,7 +71,7 @@ const HomePage = () => {
       {data && (
         <div className="data-container">
           <h2>Chain Info:</h2>
-          <p>Chain ID: {extractData("chain_id")}</p>
+          <p>Chain ID: {chainInfo.chain_id}</p>
 
           <h2>Account Details:</h2>
           <p>Authentication Key: {extractData("0x1::account::Account").authentication_key}</p>
