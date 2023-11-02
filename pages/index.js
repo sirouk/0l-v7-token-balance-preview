@@ -3,7 +3,7 @@ import { useState } from 'react';
 const HomePage = () => {
   const [address, setAddress] = useState('');
   const [chainInfo, setChain] = useState(null);
-  const [v7Data, setData] = useState(null);
+  const [data, setData] = useState(null);
   const [v5Balance, setV5Balance] = useState(null);
 
   const fetchBalances = async () => {
@@ -46,7 +46,7 @@ const HomePage = () => {
   };  
 
   const v7DataExtraction = (type) => {
-    return v7Data?.find(item => item.type === type)?.v7Data || {};
+    return data?.find(item => item.type === type)?.data || {};
   };
 
   const formatNumber = (number) => {
@@ -68,7 +68,7 @@ const HomePage = () => {
         />
         <button onClick={fetchBalances}>Submit</button>
       </div>
-      {v7Data && (
+      {data && (
         <div className="data-container">
           
 
