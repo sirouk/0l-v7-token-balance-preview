@@ -5,6 +5,7 @@ const HomePage = () => {
   const [data, setData] = useState(null);
   const [v5Balance, setV5Balance] = useState(null);
   const [supplyInfo, setSupplyInfo] = useState(null);
+  const [v5SupplyInfo, setSupplyInfoV5] = useState(null);
   const [v5Chain, setv5ChainID] = useState(null);
   const [chainInfo, setChain] = useState(null);
 
@@ -32,6 +33,28 @@ const HomePage = () => {
       console.log(supplyInfo);
       setSupplyInfo(supplyInfo);
 
+      
+      try {
+          const response = await fetch('https://cors-anywhere.herokuapp.com/https://0lexplorer.io/api/webmonitor/vitals');
+          
+          // Check if the response is okay
+          if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+      
+          const data = await response.json();
+          console.log(data);
+          const v5TotalSupply = formatNumber(data.chain_view.total_supply.toFixed(6));
+          setSupplyInfoV5(v5TotalSupply);
+      } catch (error) {
+          console.error('Error:', error);
+      
+          // Placeholder or default value in case of error
+          const placeholderData = 'error';
+          setSupplyInfoV5(placeholderData);
+      }
+      
+
 
       const formattedAddress = address.toLowerCase();             // Convert the address to lowercase
       const cleanAddress = formattedAddress.replace(/^0x/, '');      // Remove the leading 0x for v5 request
@@ -40,6 +63,7 @@ const HomePage = () => {
       const v7Data = await v7DataReq.json();
       console.log(v7Data);
       setData(v7Data);
+      
 
   
       const v5DataReq = await fetch('https://mainnet-v5-rpc.openlibra.space:8080', {
@@ -101,13 +125,11 @@ const HomePage = () => {
           <p>v7 Balance: {formatNumber((v7DataExtraction("0x1::coin::CoinStore<0x1::gas_coin::LibraCoin>").coin.value * 0.000001).toFixed(6))}</p>
 
           <h2>Slow Wallet:</h2>
-          <p>v5 Unlocked: {formatNumber((0).toFixed(6))}</p>
-          <p>v5 Transferred: {formatNumber((0).toFixed(6))}</p>
           <p>v7 Unlocked: {formatNumber((v7DataExtraction("0x1::slow_wallet::SlowWallet").unlocked * 0.000001).toFixed(6))}</p>
           <p>v7 Transferred: {formatNumber((v7DataExtraction("0x1::slow_wallet::SlowWallet").transferred * 0.000001).toFixed(6))}</p>
 
           <h2>Supply Details:</h2>
-          <p>v5 Total Supply: {formatNumber((0).toFixed(6))}</p>
+          <p>v5 Total Supply: {v5SupplyInfo}</p>
           <p>v7 Total Supply: {formatNumber((supplyInfo * 0.000001).toFixed(6))}</p>
 
           <h2>Chain Info:</h2>
