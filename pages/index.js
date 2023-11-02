@@ -17,7 +17,7 @@ const HomePage = () => {
       setChain(chainInfo);
 
       const supplyInfoReq = await fetch(`https://rpc.0l.fyi/v1/tables/0xfc074a2b7638a50ba678ce381a2350a28264f4da004603adb8dc36d125750108/item`);
-      const supplyInfo = await supplyInfoReq.json();
+      const supplyInfo = await supplyInfoReq;
       console.log(supplyInfo);
       setSupplyInfo(supplyInfo);
 
