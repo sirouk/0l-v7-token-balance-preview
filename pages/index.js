@@ -5,6 +5,7 @@ const HomePage = () => {
   const [chainInfo, setChain] = useState(null);
   const [data, setData] = useState(null);
   const [v5Balance, setV5Balance] = useState(null);
+  const [v5ChainID, setv5ChainID] = useState(null);
 
   const fetchBalances = async () => {
     try {
@@ -37,6 +38,8 @@ const HomePage = () => {
       });
       const v5Data = await v5DataReq.json();
       console.log(v5Data);
+      const v5ChainID = v5Data.result.diem_chain_id;  // Extracting the amount from the v5 response
+      setv5ChainID(v5ChainID);
       const v5Amount = v5Data.result.balances[0]?.amount || 0;  // Extracting the amount from the v5 response
       setV5Balance(v5Amount);
   
@@ -80,7 +83,7 @@ const HomePage = () => {
           <p>v7 Balance: {formatNumber((v7DataExtraction("0x1::coin::CoinStore<0x1::gas_coin::LibraCoin>").coin.value * 0.000001).toFixed(6))}</p>
 
           <h2>Chain Info:</h2>
-          <p>v5 Chain ID: {data.diem_chain_id}</p>
+          <p>v5 Chain ID: {v5ChainID}</p>
           <p>v7 Chain ID: {chainInfo.chain_id}</p>
         </div>
       )}
