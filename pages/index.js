@@ -45,8 +45,8 @@ const HomePage = () => {
     }
   };  
 
-  const extractData = (type) => {
-    return data?.find(item => item.type === type)?.data || {};
+  const v7DataExtraction = (type) => {
+    return v7Data?.find(item => item.type === type)?.v7Data || {};
   };
 
   const formatNumber = (number) => {
@@ -68,16 +68,16 @@ const HomePage = () => {
         />
         <button onClick={fetchBalances}>Submit</button>
       </div>
-      {data && (
+      {v7Data && (
         <div className="data-container">
           
 
           <h2>Account Details:</h2>
-          <p>Authentication Key: {extractData("0x1::account::Account").authentication_key}</p>
+          <p>Authentication Key: {v7DataExtraction("0x1::account::Account").authentication_key}</p>
           
           <h2>Balance Details:</h2>
           <p>v5 Balance: {formatNumber((v5Balance * 0.000001).toFixed(6))}</p>
-          <p>v7 Balance: {formatNumber((extractData("0x1::coin::CoinStore<0x1::gas_coin::LibraCoin>").coin.value * 0.000001).toFixed(6))}</p>
+          <p>v7 Balance: {formatNumber((v7DataExtraction("0x1::coin::CoinStore<0x1::gas_coin::LibraCoin>").coin.value * 0.000001).toFixed(6))}</p>
 
           <h2>Chain Info:</h2>
           <p>v5 Chain ID: {data.diem_chain_id}</p>
