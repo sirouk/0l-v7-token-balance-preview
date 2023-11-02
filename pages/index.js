@@ -2,10 +2,11 @@ import { useState } from 'react';
 
 const HomePage = () => {
   const [address, setAddress] = useState('');
-  const [chainInfo, setChain] = useState(null);
   const [data, setData] = useState(null);
   const [v5Balance, setV5Balance] = useState(null);
+  const [supplyInfo, setSupplyInfo] = useState(null);
   const [v5Chain, setv5ChainID] = useState(null);
+  const [chainInfo, setChain] = useState(null);
 
   const fetchBalances = async () => {
     try {
@@ -14,6 +15,11 @@ const HomePage = () => {
       const chainInfo = await chainInfoReq.json();
       console.log(chainInfo);
       setChain(chainInfo);
+
+      const supplyInfoReq = await fetch(`https://rpc.0l.fyi/v1/tables/0xfc074a2b7638a50ba678ce381a2350a28264f4da004603adb8dc36d125750108/item`);
+      const supplyInfo = await supplyInfoReq.json();
+      console.log(supplyInfo);
+      setSupplyInfo(supplyInfo);
 
       const formattedAddress = address.toLowerCase();             // Convert the address to lowercase
       const cleanAddress = formattedAddress.replace(/^0x/, '');      // Remove the leading 0x for v5 request
@@ -90,7 +96,7 @@ const HomePage = () => {
 
           <h2>Supply Details:</h2>
           <p>v5 Total Supply: {formatNumber((0).toFixed(6))}</p>
-          <p>v7 Total Supply: {formatNumber((v7DataExtraction("0x1::token::Token").total_value * 0.000001).toFixed(6))}</p>
+          <p>v7 Total Supply: {formatNumber((supplyInfo * 0.000001).toFixed(6))}</p>
 
           <h2>Chain Info:</h2>
           <p>v5 Chain ID: {v5Chain}</p>
