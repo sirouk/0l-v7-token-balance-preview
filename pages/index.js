@@ -3,7 +3,7 @@ import { useState } from 'react';
 const HomePage = () => {
   const [address, setAddress] = useState('');
   const [chainInfo, setChain] = useState(null);
-  const [data, setData] = useState(null);
+  const [v7Data, setData] = useState(null);
   const [v5Balance, setV5Balance] = useState(null);
 
   const fetchBalances = async () => {
@@ -17,13 +17,13 @@ const HomePage = () => {
       const formattedAddress = address.toLowerCase();             // Convert the address to lowercase
       const cleanAddress = formattedAddress.replace(/^0x/, '');      // Remove the leading 0x for v5 request
 
-      const responseV7 = await fetch(`https://rpc.0l.fyi/v1/accounts/0x${cleanAddress}/resources`);
-      const dataV7 = await responseV7.json();
-      console.log(dataV7);
-      setData(dataV7);
+      const v7DataReq = await fetch(`https://rpc.0l.fyi/v1/accounts/0x${cleanAddress}/resources`);
+      const v7Data = await v7DataReq.json();
+      console.log(v7Data);
+      setData(v7Data);
 
   
-      const responseV5 = await fetch('https://mainnet-v5-rpc.openlibra.space:8080', {
+      const v5DataReq = await fetch('https://mainnet-v5-rpc.openlibra.space:8080', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -35,9 +35,9 @@ const HomePage = () => {
           id: 1
         })
       });
-      const dataV5 = await responseV5.json();
-      console.log(dataV5);
-      const v5Amount = dataV5.result.balances[0]?.amount || 0;  // Extracting the amount from the v5 response
+      const v5Data = await v5DataReq.json();
+      console.log(v5Data);
+      const v5Amount = v5Data.result.balances[0]?.amount || 0;  // Extracting the amount from the v5 response
       setV5Balance(v5Amount);
   
     } catch (error) {
@@ -70,8 +70,7 @@ const HomePage = () => {
       </div>
       {data && (
         <div className="data-container">
-          <h2>Chain Info:</h2>
-          <p>Chain ID: {chainInfo.chain_id}</p>
+          
 
           <h2>Account Details:</h2>
           <p>Authentication Key: {extractData("0x1::account::Account").authentication_key}</p>
@@ -79,6 +78,10 @@ const HomePage = () => {
           <h2>Balance Details:</h2>
           <p>v5 Balance: {formatNumber((v5Balance * 0.000001).toFixed(6))}</p>
           <p>v7 Balance: {formatNumber((extractData("0x1::coin::CoinStore<0x1::gas_coin::LibraCoin>").coin.value * 0.000001).toFixed(6))}</p>
+
+          <h2>Chain Info:</h2>
+          <p>v5 Chain ID: {data.diem_chain_id}</p>
+          <p>v7 Chain ID: {chainInfo.chain_id}</p>
         </div>
       )}
     </div>
