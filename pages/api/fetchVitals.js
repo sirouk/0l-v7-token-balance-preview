@@ -1,5 +1,7 @@
 // pages/api/fetchVitals.js
 
+export const runtime = 'edge';
+
 export default async (req, res) => {
     try {
       const response = await fetch('https://0lexplorer.io/api/webmonitor/vitals');
