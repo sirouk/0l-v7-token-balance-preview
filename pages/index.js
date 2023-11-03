@@ -35,7 +35,7 @@ const HomePage = () => {
 
       
       try {
-          const response = await fetch('https://cors-anywhere.herokuapp.com/https://0lexplorer.io/api/webmonitor/vitals');
+          const response = await fetch('/api/fetchVitals');
           
           // Check if the response is okay
           if (!response.ok) {
@@ -88,7 +88,7 @@ const HomePage = () => {
     } catch (error) {
       console.error('Error fetching data:', error);
     }
-  };  
+  };
 
   const v7DataExtraction = (type) => {
     return data?.find(item => item.type === type)?.data || {};
