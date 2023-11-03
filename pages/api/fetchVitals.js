@@ -1,4 +1,4 @@
-// pages/api/fetchVitals.js
+// api/fetchVitals.js
 
 export default async (req, res) => {
     try {
