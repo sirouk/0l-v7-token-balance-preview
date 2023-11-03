@@ -37,7 +37,7 @@ const HomePage = () => {
 
       
       try {
-          //const response = await fetch('/api/fetchVitals');
+          //const response = await fetch('/api/fetchVitals'); // if we want to host it server side
           const response = await fetch('https://v5-vitals-for-v7-token-preview.tvboxsupreme.workers.dev');
           
           // Check if the response is okay
@@ -103,7 +103,9 @@ const HomePage = () => {
 
   return (
     <div className="container">
-      <Image src="/0L-logo.png" alt="0L Network" className="logo" width="83" height="40" />
+      <a href="/">
+        <Image src="/0L-logo.png" alt="0L Network" className="logo" width="83" height="40" />
+      </a>
       <h1>v7 Token Split Preview</h1>
       <p>Enter your 0L v5 Address:</p>
       <div className="input-container">
