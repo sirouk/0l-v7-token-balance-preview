@@ -1,5 +1,4 @@
 "use client"; // This is a client component
-export const runtime = 'edge';
 import Image from 'next/image'
 import { useState } from 'react';
 
@@ -38,7 +37,8 @@ const HomePage = () => {
 
       
       try {
-          const response = await fetch('/api/fetchVitals');
+          //const response = await fetch('/api/fetchVitals');
+          const response = await fetch('https://v5-vitals-for-v7-token-preview.tvboxsupreme.workers.dev');
           
           // Check if the response is okay
           if (!response.ok) {
