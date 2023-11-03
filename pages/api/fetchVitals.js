@@ -1,5 +1,4 @@
 // pages/api/fetchVitals.js
-
 export const runtime = 'edge';
 
 export default async (req, res) => {

@@ -1,4 +1,5 @@
 "use client"; // This is a client component
+export const runtime = 'edge';
 import Image from 'next/image'
 import { useState } from 'react';
 
