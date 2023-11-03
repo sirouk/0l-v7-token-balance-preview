@@ -1,3 +1,4 @@
+export const config = { runtime: 'edge' };
 import { useState } from 'react';
 
 const HomePage = () => {
