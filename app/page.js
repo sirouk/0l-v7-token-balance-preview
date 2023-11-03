@@ -103,7 +103,7 @@ const HomePage = () => {
 
   return (
     <div className="container">
-      <img src="/0L-logo.png" alt="0L Network" className="logo" />
+      <Image src="/0L-logo.png" alt="0L Network" className="logo" width="83" height="40" />
       <h1>v7 Token Split Preview</h1>
       <p>Enter your 0L v5 Address:</p>
       <div className="input-container">
