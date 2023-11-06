@@ -10,6 +10,7 @@ const HomePage = () => {
   const [v5SupplyInfo, setSupplyInfoV5] = useState(null);
   const [v5Chain, setv5ChainID] = useState(null);
   const [chainInfo, setChain] = useState(null);
+  const [cleanAddress, setMoreInfo] = useState(null);
 
   const fetchBalances = async () => {
     try {
@@ -66,6 +67,7 @@ const HomePage = () => {
       const v7Data = await v7DataReq.json();
       console.log(v7Data);
       setData(v7Data);
+      setMoreInfo(cleanAddress);
       
 
   
@@ -140,6 +142,10 @@ const HomePage = () => {
           <h2>Chain Info:</h2>
           <p>v5 Chain ID: {v5Chain}</p>
           <p>v7 Chain ID: {chainInfo.chain_id}</p>
+
+          <p>
+            <h3><a href='https://0l.fyi/accounts/${cleanAddress}/resources'>See More Info for {cleanAddress}</a></h3>
+          </p>
         </div>
       )}
     </div>
