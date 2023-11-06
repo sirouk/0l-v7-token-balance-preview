@@ -146,7 +146,7 @@ const HomePage = () => {
           <p>
             <h3>
               <a target="_blank" href={`https://0l.fyi/accounts/0x${cleanAddress}/resources`}>
-                See more resources for {cleanAddress}
+                See testnet resources for {cleanAddress}
               </a>
             </h3>
           </p>
