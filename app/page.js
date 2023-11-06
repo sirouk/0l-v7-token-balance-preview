@@ -144,7 +144,7 @@ const HomePage = () => {
           <p>v7 Chain ID: {chainInfo.chain_id}</p>
 
           <p>
-            <h3><a href='https://0l.fyi/accounts/${cleanAddress}/resources'>See More Info for {cleanAddress}</a></h3>
+            <h3><a href="https://0l.fyi/accounts/{cleanAddress}/resources">See more resources for {cleanAddress}</a></h3>
           </p>
         </div>
       )}
