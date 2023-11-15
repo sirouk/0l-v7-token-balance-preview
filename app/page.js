@@ -129,7 +129,7 @@ const HomePage = () => {
           
           <h2>Balance Details:</h2>
           <p>v5 Balance: {formatNumber((v5Balance * 0.000001).toFixed(6))}</p>
-          <p>v7 Balance: {formatNumber((v7DataExtraction("0x1::coin::CoinStore<0x1::gas_coin::LibraCoin>").coin.value * 0.000001).toFixed(6))}</p>
+          <p>v7 Balance: {formatNumber((v7DataExtraction("0x1::coin::CoinStore<0x1::libra_coin::LibraCoin>").coin.value * 0.000001).toFixed(6))}</p>
 
           <h2>Slow Wallet:</h2>
           <p>v7 Unlocked: {formatNumber((v7DataExtraction("0x1::slow_wallet::SlowWallet").unlocked * 0.000001).toFixed(6))}</p>
