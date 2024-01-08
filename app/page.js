@@ -15,7 +15,7 @@ const HomePage = () => {
   const fetchBalances = async () => {
     try {
       
-      const chainInfoReq = await fetch(`https://rpc.0l.fyi/v1/`);
+      const chainInfoReq = await fetch(`https://rpc.openlibra.space:8080/v1/`);
       const chainInfo = await chainInfoReq.json();
       console.log(chainInfo);
       setChain(chainInfo);
@@ -25,7 +25,7 @@ const HomePage = () => {
         value_type: "u128",
         key: "0xa7e1af6d61e958dbefe8f35550aab562f8923634cd7f438bc5190e99ca5fb07c"
       };
-      const supplyInfoReq = await fetch('https://rpc.0l.fyi/v1/tables/0xfc074a2b7638a50ba678ce381a2350a28264f4da004603adb8dc36d125750108/item', {
+      const supplyInfoReq = await fetch('https://rpc.openlibra.space:8080/v1/tables/0xfc074a2b7638a50ba678ce381a2350a28264f4da004603adb8dc36d125750108/item', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -63,7 +63,7 @@ const HomePage = () => {
       const formattedAddress = address.toLowerCase();             // Convert the address to lowercase
       const cleanAddress = formattedAddress.replace(/^0x/, '');      // Remove the leading 0x for v5 request
 
-      const v7DataReq = await fetch(`https://rpc.0l.fyi/v1/accounts/0x${cleanAddress}/resources`);
+      const v7DataReq = await fetch(`https://rpc.openlibra.space:8080/v1/accounts/0x${cleanAddress}/resources`);
       const v7Data = await v7DataReq.json();
       console.log(v7Data);
       setData(v7Data);
